@@ -20,14 +20,29 @@ loader = essentia.standard.MonoLoader(filename='/home/firat/Desktop/samples/soka
 audio=loader()
 
 frame = audio[1*44100 : 2*44100 + 1024] #
-plot(audio[2*44100 : 2*44100 + 1024])
-plt.savefig("frame.png")
-spec = spectrum(w(frame))
-mfcc_bands, mfcc_coeffs = mfcc(spec)
-print "mel coefficients"
-print mfcc_coeffs
-print "mel bands"
-print mfcc_bands
+# plot(audio[1*44100 : 2*44100])
+# plt.savefig("frame.png")
+#multiple
+mfccs=[]
+melbands=[]
+for frm in FrameGenerator(audio,frameSize=1024,hopSize=512,startFromZero=True):
+    mfcc_bands,mfcc_coeffs = mfcc(spectrum(w(frm)))
+    mfccs.append(mfcc_coeffs)
+    melbands.append(mfcc_bands)
+mfccs = essentia.array(mfccs).T
+melbands = essentia.array(melbands).T
+print mfccs
+print len(mfccs)
+#print melbands
+
+
+#single
+# spec = spectrum(w(frame))
+# mfcc_bands, mfcc_coeffs = mfcc(spec)
+# print "mel coefficients"
+# print mfcc_coeffs
+# print "mel bands"
+# print mfcc_bands
 
 # plot(spec)
 # plt.title("The spectrum of a frame:")
