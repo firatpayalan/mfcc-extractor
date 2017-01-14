@@ -1,18 +1,19 @@
 #simple mfcc extractor
 
 import essentia.standard
-import essentia.common
-
+import glob
 
 from essentia.standard import *
+
 #pool is a "container" data type.
 pool = essentia.Pool();
+
 
 #load audio file from file system
 w = Windowing(type = 'hann')
 spectrum = Spectrum()  # FFT() would return the complex FFT, here we just want the magnitude spectrum
 mfcc = MFCC()
-loader = essentia.standard.MonoLoader(filename='/home/firat/Desktop/samples/sokak_gurultusu/st2.wav')
+loader = essentia.standard.MonoLoader(filename='/home/firat/Desktop/samples/street_music/152570.wav')
 audio=loader()
 
 mfccs=[]
