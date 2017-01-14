@@ -23,7 +23,6 @@ def writeIntoFile(data,filename):
     newFile.write(data)
     newFile.close()
 
-print constructData("/home/firat/PycharmProjects/car_horn","traffic")
-toBeWritten = constructData("/home/firat/PycharmProjects/car_horn","traffic")
-writeIntoFile(toBeWritten,"traffic")
+toBeWritten = constructData("/home/firat/PycharmProjects/drilling","construction")
+writeIntoFile(toBeWritten,"drilling")
 
