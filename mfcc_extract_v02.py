@@ -5,7 +5,7 @@ from essentia.standard import *
 import time
 
 def findWavFiles(filepath):
-    print "Number of files: " ,len(glob.glob(filepath+"/*.wav"))
+    print ("Number of files: " ,len(glob.glob(filepath+"/*.wav")))
     return glob.glob(filepath+"/*.wav")
 
 def loadAudio(audiofilepath):
@@ -26,13 +26,13 @@ spectrum = Spectrum()
 mfcc = MFCC()
 w = Windowing(type='hann')
 
-glob = findWavFiles("/home/firat/Desktop/samples/gun_shot")
+glob = findWavFiles("24003__erdie__mega-thunder.wav")
 
 startTime = currentTime();
 for g in glob:
 
     exportedfilename = os.path.basename(g).replace(".wav","")
-    print exportedfilename
+    print(exportedfilename)
     audio = loadAudio(g)
 
     for frame in FrameGenerator(audio,frameSize=1024,hopSize=512,startFromZero=True):
@@ -44,4 +44,4 @@ for g in glob:
 
 endTime = currentTime()
 totalTime = endTime-startTime
-print "total time is", totalTime
+print ("total time is", totalTime)
